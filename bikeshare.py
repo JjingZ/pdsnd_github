@@ -9,6 +9,8 @@ CITY_DATA = {'chicago': 'chicago.csv',
 input_filter = 'none'
 
 
+# test line fot refactoring branch
+
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
@@ -38,7 +40,8 @@ def get_filters():
     if input_filter == 'month' or input_filter == 'both':
         month = input('which month? January, February, March, April, May, or June?\n').lower()
         while month not in ['january', 'february', 'march', 'april', 'may', 'june']:
-            month = input('input not valid, please choose between January, February, March, April, May, or June?\n').lower()
+            month = input(
+                'input not valid, please choose between January, February, March, April, May, or June?\n').lower()
 
     # get user input for day of week (all, monday, tuesday, ... sunday)
     if input_filter == 'day' or input_filter == 'both':
@@ -142,7 +145,8 @@ def station_stats(df):
 
     # display most frequent combination of start station and end station trip
     print('Most popular Trip : ' + str(df.groupby(['Start Station', 'End Station']).size().idxmax()), end='')
-    print(', Count: ' + str(df.groupby(['Start Station', 'End Station']).size().sort_values(ascending=False)[0]), end='')
+    print(', Count: ' + str(df.groupby(['Start Station', 'End Station']).size().sort_values(ascending=False)[0]),
+          end='')
     print(' Filter: ' + input_filter)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
@@ -194,6 +198,7 @@ def user_stats(df, city):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-' * 40)
 
+
 def display_raw_data(df):
     """ Your docstring here """
     i = 0
@@ -204,11 +209,13 @@ def display_raw_data(df):
         if raw == 'no':
             break
         elif raw == 'yes':
-            pprint.pprint(df.iloc[i:(i+4)].to_dict(orient='records')) # TO DO: appropriately subset/slice your dataframe to display next five rows
+            pprint.pprint(df.iloc[i:(i + 4)].to_dict(
+                orient='records'))  # TO DO: appropriately subset/slice your dataframe to display next five rows
             raw = input("Would you like to view more individual trip data? Type 'yes'").lower()
             i += 5
         else:
             raw = input("\nYour input is invalid. Please enter only 'yes' or 'no'\n").lower()
+
 
 def main():
     while True:
